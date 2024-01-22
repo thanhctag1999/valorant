@@ -1,3 +1,46 @@
+body {
+  background-color: black;
+  user-select: none;
+  font-family: "Montserrat", sans-serif;
+}
+.container {
+  width: 92%;
+  padding: 20px;
+}
 h1 {
   color: #fff;
+}
+.carousel,
+.carousel-slider {
+  max-width: 100% !important;
+  max-height: 400px !important;
+  cursor: pointer;
+}
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 7px solid #f3f3f3;
+  border-top: 7px solid #e40b0b;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 2;
+  background-color: transparent;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading h1 {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }

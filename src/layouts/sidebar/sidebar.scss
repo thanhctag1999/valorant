@@ -1,25 +1,36 @@
 .sidebar {
   padding: 10px;
   width: 3rem;
-  background-color: rgba(68, 68, 68, 0.521);
+  background-color: rgba(68, 68, 68, 0.212);
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .sidebar-logo {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
 
 .sidebar-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10em;
+  margin-top: 5em;
 }
 
 .sidebar-item a {
   margin-top: 20px;
   text-decoration: none;
+}
+
+.logo {
+  width: 35px;
+}
+
+.sidebar-icon {
+  width: 30px !important;
+  height: 30px !important;
 }
