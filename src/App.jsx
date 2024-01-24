@@ -1,26 +1,29 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./layouts/layout";
-import Dashboard from "./pages/dashboard";
-import Maps from "./pages/maps";
-import Agent from "./pages/agent";
-import PlayerCard from "./pages/player_card";
-import Weapons from "./pages/weapons";
+import { publicRoutes } from "./Routes";
 import "./App.scss";
-import AgentDetail from "./pages/agent_detail";
+import Layout from "./components/layouts/layout";
 
 export default function App() {
+  console.log("Rendering App component"); // Log for debugging the component rendering
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="agent" element={<Agent />} />
-          <Route path="agent/detail" element={<AgentDetail />} />
-          <Route path="maps" element={<Maps />} />
-          <Route path="weapons" element={<Weapons />} />
-          <Route path="player-card" element={<PlayerCard />} />
-        </Route>
+        {publicRoutes.map((route, index) => {
+          const Page = route.componnet;
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              element={
+                <Layout>
+                  <Page />
+                </Layout>
+              }
+            />
+          );
+        })}
       </Routes>
     </BrowserRouter>
   );

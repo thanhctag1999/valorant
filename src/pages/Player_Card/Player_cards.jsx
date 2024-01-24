@@ -2,11 +2,11 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "../app.scss";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import "../../App.scss";
 
-const PlayerCard = () => {
+const PlayerCards = () => {
   const images = [
     "https://media.valorant-api.com/playercards/3432dc3d-47da-4675-67ae-53adb1fdad5e/largeart.png",
     "https://media.valorant-api.com/playercards/9397e078-4140-cc2b-4fcd-b0afedb9ece8/largeart.png",
@@ -39,7 +39,7 @@ const PlayerCard = () => {
 
   return (
     <div className="container">
-      <h1>Player Card</h1>
+      <h1>Player Cards</h1>
       <Carousel
         ssr
         partialVisbile
@@ -100,4 +100,4 @@ const CustomCard = styled(Card)({
   },
 });
 
-export default PlayerCard;
+export default PlayerCards;

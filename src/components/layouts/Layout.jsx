@@ -1,12 +1,11 @@
-import { Outlet } from "react-router-dom";
 import "./layout.scss";
 import Sidebar from "./sidebar/sidebar";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <div className="layout">
       <Sidebar />
-      <Outlet />
+      <>{children}</>
     </div>
   );
 };

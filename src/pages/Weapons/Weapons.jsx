@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import Stack from "@mui/material/Stack";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
-import WeaponsCard from "../components/weapon_card";
+import WeaponsCard from "../../components/weapon_card";
 
 const data = [
   {

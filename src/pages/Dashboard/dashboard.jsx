@@ -1,6 +1,7 @@
 import React from "react";
 
 const Dashboard = () => {
+  console.log("Dashboard");
   const backgroundStyle = {
     backgroundImage: 'url("images/background3.jpg")',
     backgroundSize: "cover",

@@ -52,9 +52,9 @@ const Maps = () => {
           infiniteLoop={true}
           swipeable={true}
         >
-          {data.map((element) => {
+          {data.map((element, index) => {
             return (
-              <div>
+              <div key={index}>
                 <img src={element.splash} />
                 <div>{element.narrativeDescription}</div>
                 <h5 className="legend">{element.displayName}</h5>

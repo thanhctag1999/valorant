@@ -1,10 +1,20 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import "./sidebar.scss";
 
 export default function Sidebar() {
-  const [activeTab, setActiveTab] = useState("home");
+  const location = useLocation();
+  const currentRoute = location.pathname.substring(1);
+  const [activeTab, setActiveTab] = useState("");
+
+  useEffect(() => {
+    if (currentRoute === "") {
+      setActiveTab("home");
+    } else {
+      setActiveTab(currentRoute);
+    }
+  }, []);
 
   const handleNavLinkClick = (tab) => {
     setActiveTab(tab);
@@ -33,15 +43,15 @@ export default function Sidebar() {
         </NavLink>
 
         <NavLink
-          onClick={() => handleNavLinkClick("agent")}
-          className={activeTab === "agent" ? "active" : ""}
-          to="/agent"
+          onClick={() => handleNavLinkClick("agents")}
+          className={activeTab === "agents" ? "active" : ""}
+          to="/agents"
         >
           <Avatar
             className="sidebar-icon"
             alt="A"
             src={
-              activeTab === "agent"
+              activeTab === "agents"
                 ? "images/agent_active.png"
                 : "images/agent.png"
             }
@@ -83,7 +93,7 @@ export default function Sidebar() {
         <NavLink
           onClick={() => handleNavLinkClick("card")}
           className={activeTab === "card" ? "active" : ""}
-          to="/player-card"
+          to="/player-cards"
         >
           <Avatar
             className="sidebar-icon"

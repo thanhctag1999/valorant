@@ -2,10 +2,10 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import "../app.scss";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { NavLink } from "react-router-dom";
+import "../../App.scss";
 
 const Agent = () => {
   const data = [
