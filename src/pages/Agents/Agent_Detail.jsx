@@ -4,17 +4,40 @@ import CardMedia from "@mui/material/CardMedia";
 import Stack from "@mui/material/Stack";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import React from "react";
-import { useLocation } from "react-router-dom";
+import { React, useEffect, useState } from "react";
+import AgentService from "../../apis/AgentService";
+import { useParams } from "react-router-dom";
 
-export default function AgentDetail() {
-  const location = useLocation();
-  let uuid = location.state;
-  console.log(uuid);
+export default function AgentDetail({ props }) {
+  const [data, setData] = useState([]);
+  const { uuid } = useParams();
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchAgentDetail = async () => {
+      try {
+        const results = await AgentService.getAgentDetail(uuid);
+
+        if (isMounted) {
+          setData(results.data);
+        }
+      } catch (error) {
+        console.error("Error fetching agent details:", error);
+      }
+    };
+    fetchAgentDetail();
+
+    return () => {
+      isMounted = false; // Cleanup to prevent setting state on an unmounted component
+    };
+  }, [uuid]);
+
+  console.log(data);
 
   return (
     <div className="container">
-      <h1>Maps</h1>
+      <h1>Agent Details</h1>
       <Stack
         direction={{ xs: "column", sm: "row" }}
         spacing={{ xs: 1, sm: 2, md: 4 }}
@@ -25,7 +48,7 @@ export default function AgentDetail() {
           <CardMedia
             sx={{}}
             component="img"
-            image="https://media.valorant-api.com/agents/1e58de9c-4950-5125-93e9-a0aee9f98746/fullportrait.png"
+            image={data.fullPortrait}
             alt="Paella dish"
           />
         </Card>
@@ -36,7 +59,7 @@ export default function AgentDetail() {
               variant="h4"
               color="text.primary"
             >
-              ISO
+              {data.displayName}
             </Typography>
             <Typography
               sx={{ color: "white" }}
@@ -54,7 +77,7 @@ export default function AgentDetail() {
                   variant="body1"
                   color="text.primary"
                 >
-                  Initiator
+                  {data?.role?.displayName}
                 </Typography>
 
                 <CardMedia
@@ -79,10 +102,7 @@ export default function AgentDetail() {
               variant="body2"
               color="text.secondary"
             >
-              Đặc Vụ người Na-uy: Deadlock, sử dụng hàng loạt sợi dây nano tân
-              tiến nhằm bảo vệ chiến trường khỏi những đợt công kích nguy hiểm
-              nhất. Chẳng ai có thể thoát khỏi sự truy sát gắt gao, cũng như
-              không thể sống sót trước sự hung dữ ngoan cường của cô ấy.
+              {data.description}
             </Typography>
             <br />
             <Typography
@@ -98,50 +118,74 @@ export default function AgentDetail() {
               spacing={{ xs: 1, sm: 2, md: 4 }}
             >
               <Tooltip
-                title="EQUIP Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When Wingman expires he reverts into a dormant globule. INTERACT to reclaim the globule and gain another Wingman charge after a short cooldown."
+                title={
+                  data?.abilities != null ? data?.abilities[0]?.description : ""
+                }
                 arrow
               >
                 <CardMedia
                   sx={{ width: "50px" }}
                   component="img"
                   height="50"
-                  image="https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/abilities/ability1/displayicon.png"
+                  image={
+                    data?.abilities != null
+                      ? data?.abilities[0]?.displayIcon
+                      : ""
+                  }
                   alt="Paella dish"
                 />
               </Tooltip>
               <Tooltip
-                title="EQUIP Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When Wingman expires he reverts into a dormant globule. INTERACT to reclaim the globule and gain another Wingman charge after a short cooldown."
+                title={
+                  data?.abilities != null ? data?.abilities[1]?.description : ""
+                }
                 arrow
               >
                 <CardMedia
                   sx={{ width: "50px" }}
                   component="img"
                   height="50"
-                  image="https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/abilities/ability2/displayicon.png"
+                  image={
+                    data?.abilities != null
+                      ? data?.abilities[1]?.displayIcon
+                      : ""
+                  }
                   alt="Paella dish"
                 />
               </Tooltip>
               <Tooltip
-                title="EQUIP Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When Wingman expires he reverts into a dormant globule. INTERACT to reclaim the globule and gain another Wingman charge after a short cooldown."
+                title={
+                  data?.abilities != null ? data?.abilities[2]?.description : ""
+                }
                 arrow
               >
                 <CardMedia
                   sx={{ width: "50px" }}
                   component="img"
                   height="50"
-                  image="https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/abilities/grenade/displayicon.png"
+                  image={
+                    data?.abilities != null
+                      ? data?.abilities[2]?.displayIcon
+                      : ""
+                  }
                   alt="Paella dish"
                 />
               </Tooltip>
               <Tooltip
-                title="EQUIP Wingman. FIRE to send Wingman forward seeking enemies. Wingman unleashes a concussive blast toward the first enemy he sees. ALT FIRE when targeting a Spike site or planted Spike to have Wingman defuse or plant the Spike. To plant, Gekko must have the Spike in his inventory. When Wingman expires he reverts into a dormant globule. INTERACT to reclaim the globule and gain another Wingman charge after a short cooldown."
+                title={
+                  data?.abilities != null ? data?.abilities[3]?.description : ""
+                }
                 arrow
               >
                 <CardMedia
                   sx={{ width: "50px" }}
                   component="img"
                   height="50"
-                  image="https://media.valorant-api.com/agents/e370fa57-4757-3604-3648-499e1f642d3f/abilities/ultimate/displayicon.png"
+                  image={
+                    data?.abilities != null
+                      ? data?.abilities[3]?.displayIcon
+                      : ""
+                  }
                   alt="Paella dish"
                 />
               </Tooltip>

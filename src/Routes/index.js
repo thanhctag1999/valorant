@@ -15,7 +15,7 @@ const publicRoutes = [
     componnet: Agent,
   },
   {
-    path: "agents/detail",
+    path: "/agents/detail/:uuid",
     componnet: AgentDetail,
   },
   {

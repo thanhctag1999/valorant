@@ -5,8 +5,6 @@ import "./App.scss";
 import Layout from "./components/layouts/layout";
 
 export default function App() {
-  console.log("Rendering App component"); // Log for debugging the component rendering
-
   return (
     <BrowserRouter>
       <Routes>
