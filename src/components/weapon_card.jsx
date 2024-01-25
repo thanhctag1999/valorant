@@ -4,7 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import React from "react";
 
-export default function WeaponsCard({ id, name, image }) {
+export default function WeaponsCard({ id, name, image, shopData }) {
   return (
     <div>
       <Card
@@ -61,10 +61,10 @@ export default function WeaponsCard({ id, name, image }) {
             {name}
           </Typography>
           <Typography variant="body2" color="white">
-            Một vũ khí đa năng có lực sát thương, tốc độ bắn và độ chính xác cao
-            ở tầm gần và tầm trung. Với khẩu súng này, bạn sẽ dễ dàng hạ gục đối
-            thủ ở mọi ngóc ngách của bản đồ, và thậm chí có thể hạ gục kẻ thù ở
-            khoảng cách xa nếu có kỹ năng ngắm ổn định.
+            Category: {shopData?.category}
+          </Typography>
+          <Typography variant="body2" color="white">
+            Price: {shopData?.cost}
           </Typography>
         </CardContent>
       </Card>

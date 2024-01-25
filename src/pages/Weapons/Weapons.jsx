@@ -9,55 +9,44 @@ import Stack from "@mui/material/Stack";
 import InputBase from "@mui/material/InputBase";
 import { styled } from "@mui/material/styles";
 import WeaponsCard from "../../components/weapon_card";
-
-const data = [
-  {
-    uuid: 1,
-    category: "Sidearms",
-    displayName: "Classic",
-    displayIcon:
-      "https://media.valorant-api.com/weapons/29a0cfab-485b-f5d5-779a-b59f85e204a8/displayicon.png",
-  },
-  {
-    uuid: 2,
-    category: "SMGs",
-    displayName: "Shorty",
-    displayIcon:
-      "https://media.valorant-api.com/weapons/42da8ccc-40d5-affc-beec-15aa47b42eda/displayicon.png",
-  },
-  {
-    uuid: 3,
-    category: "Shotguns",
-    displayName: "Frenzy",
-    displayIcon:
-      "https://media.valorant-api.com/weapons/44d4e95c-4157-0037-81b2-17841bf2e8e3/displayicon.png",
-  },
-  {
-    uuid: 4,
-    category: "Rifles",
-    displayName: "Ghost",
-    displayIcon:
-      "https://media.valorant-api.com/weapons/1baa85b4-4c70-1284-64bb-6481dfc3bb4e/displayicon.png",
-  },
-  {
-    uuid: 1,
-    category: "Sniper Rifles",
-    displayName: "Sheriff",
-    displayIcon:
-      "https://media.valorant-api.com/weapons/e336c6b8-418d-9340-d77f-7a9e4cfe0702/displayicon.png",
-  },
-];
+import WeaponService from "../../apis/WeaponService";
 
 const Weapons = () => {
-  const [category, setCategory] = React.useState("Sidearms");
-  const [dataList, setDataList] = React.useState(data);
+  const [category, setCategory] = React.useState("Pistols");
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const changeCategory = (event) => {
     setCategory(event.target.value);
-    setDataList(
-      data.filter((element) => element.category === event.target.value)
-    );
   };
+
+  useEffect(() => {
+    const fetchWeapons = async () => {
+      try {
+        setLoading(true);
+        const results = await WeaponService.getWeapons();
+        setData(
+          results.data.filter(
+            (element) => element.shopData?.category === category
+          )
+        );
+      } catch (error) {
+        console.error("Error fetching weapons:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWeapons();
+  }, [category]);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
@@ -79,16 +68,16 @@ const Weapons = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               value={category}
-              label="Age"
+              label="Category"
               input={<BootstrapInput />}
               onChange={(event) => changeCategory(event)}
             >
-              <MenuItem value="Sidearms">Sidearms</MenuItem>
+              <MenuItem value="Pistols">Pistols</MenuItem>
               <MenuItem value="SMGs">SMGs</MenuItem>
               <MenuItem value="Shotguns">Shotguns</MenuItem>
               <MenuItem value="Rifles">Rifles</MenuItem>
               <MenuItem value="Sniper Rifles">Sniper Rifles</MenuItem>
-              <MenuItem value="Machine Guns">Machine Guns</MenuItem>
+              <MenuItem value="Heavy Weapons">Heavy Weapons</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -100,12 +89,13 @@ const Weapons = () => {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 2, sm: 8, md: 12 }}
         >
-          {dataList.map((element, index) => (
+          {data.map((element, index) => (
             <Grid item xs={2} sm={4} md={4} key={index}>
               <WeaponsCard
-                id={element.id}
+                id={element.uuid}
                 name={element.displayName}
                 image={element.displayIcon}
+                shopData={element.shopData}
               />
             </Grid>
           ))}

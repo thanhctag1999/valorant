@@ -40,7 +40,8 @@ h1 {
   }
 }
 
-.loading h1 {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+.loading,
+.no-data {
+  display: block;
+  margin: auto;
 }

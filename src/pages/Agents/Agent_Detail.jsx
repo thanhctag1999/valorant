@@ -7,14 +7,16 @@ import Typography from "@mui/material/Typography";
 import { React, useEffect, useState } from "react";
 import AgentService from "../../apis/AgentService";
 import { useParams } from "react-router-dom";
+import "../../App.scss";
 
-export default function AgentDetail({ props }) {
+export default function AgentDetail() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { uuid } = useParams();
 
   useEffect(() => {
     let isMounted = true;
-
+    setLoading(true);
     const fetchAgentDetail = async () => {
       try {
         const results = await AgentService.getAgentDetail(uuid);
@@ -24,6 +26,8 @@ export default function AgentDetail({ props }) {
         }
       } catch (error) {
         console.error("Error fetching agent details:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchAgentDetail();
@@ -33,7 +37,13 @@ export default function AgentDetail({ props }) {
     };
   }, [uuid]);
 
-  console.log(data);
+  if (loading) {
+    return (
+      <div className="loading">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
