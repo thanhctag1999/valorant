@@ -54,7 +54,7 @@ export default function AgentDetail() {
         justifyContent="space-between"
         alignItems="start"
       >
-        <Card sx={{ width: "60%", backgroundColor: "transparent" }}>
+        <Card sx={{ width: ["100%", "60%"], backgroundColor: "transparent" }}>
           <CardMedia
             sx={{}}
             component="img"
@@ -62,7 +62,7 @@ export default function AgentDetail() {
             alt="Paella dish"
           />
         </Card>
-        <Card sx={{ width: "40%", backgroundColor: "#303030b8" }}>
+        <Card sx={{ width: ["100%", "40%"], backgroundColor: "#303030b8" }}>
           <CardContent>
             <Typography
               sx={{ color: "white" }}
@@ -123,10 +123,7 @@ export default function AgentDetail() {
               Kỹ năng
             </Typography>
             <br />
-            <Stack
-              direction={{ xs: "column", sm: "row" }}
-              spacing={{ xs: 1, sm: 2, md: 4 }}
-            >
+            <Stack direction="row" spacing={{ xs: 1, sm: 2, md: 4 }}>
               <Tooltip
                 title={
                   data?.abilities != null ? data?.abilities[0]?.description : ""

@@ -7,6 +7,13 @@ body {
   width: 92%;
   padding: 20px;
 }
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
 h1 {
   color: #fff;
 }
@@ -44,4 +51,13 @@ h1 {
 .no-data {
   display: block;
   margin: auto;
+}
+
+.map-name {
+  font-size: 30px;
+  color: #fff;
+  position: absolute;
+  z-index: 10;
+  top: -40px;
+  left: 20px;
 }

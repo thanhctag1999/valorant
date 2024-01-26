@@ -83,7 +83,7 @@ const Weapons = () => {
         </Box>
       </Stack>
 
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, marginTop: "20px", overflowY: "auto" }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}

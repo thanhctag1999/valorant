@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Carousel from "react-multi-carousel";
@@ -5,37 +6,36 @@ import "react-multi-carousel/lib/styles.css";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import "../../App.scss";
+import PlayerCardService from "../../apis/PlayerCardService";
+import { responsive } from "../../utils/common";
 
 const PlayerCards = () => {
-  const images = [
-    "https://media.valorant-api.com/playercards/3432dc3d-47da-4675-67ae-53adb1fdad5e/largeart.png",
-    "https://media.valorant-api.com/playercards/9397e078-4140-cc2b-4fcd-b0afedb9ece8/largeart.png",
-    "https://media.valorant-api.com/playercards/f32eb1e5-4cd3-0520-88a3-0cafb7423002/largeart.png",
-    "https://media.valorant-api.com/playercards/7aa1a5fb-4ae3-9a3b-ae04-05bd9fc02413/largeart.png",
-    "https://media.valorant-api.com/playercards/9fb348bc-41a0-91ad-8a3e-818035c4e561/largeart.png",
-    "https://media.valorant-api.com/playercards/cd5e4a23-4a0b-0f31-d87a-a1a2ec3301f4/largeart.png",
-    "https://media.valorant-api.com/playercards/1fb0bee0-49db-fb51-b090-bc834babdb2b/largeart.png",
-    "https://media.valorant-api.com/playercards/c3e4a7e3-48c4-8476-6bf5-39892718e1f2/largeart.png",
-  ];
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
-    },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 3,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 2,
-    },
-  };
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchPlayerCards = async () => {
+      try {
+        setLoading(true);
+        const results = await PlayerCardService.getPlayerCards();
+        setData(results.data);
+      } catch (error) {
+        console.error("Error fetching player cards:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlayerCards();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="loading">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
@@ -46,7 +46,7 @@ const PlayerCards = () => {
         itemClass="image-item"
         responsive={responsive}
       >
-        {images.slice(0, images.length).map((image, index) => {
+        {data.slice(0, data.length).map((element, index) => {
           return (
             <CustomCard key={index}>
               <CardMedia
@@ -57,7 +57,7 @@ const PlayerCards = () => {
                 }}
                 className="slider-img"
                 component="img"
-                image={image}
+                image={element.largeArt}
                 alt="Agent"
               />
               <Typography
@@ -73,7 +73,7 @@ const PlayerCards = () => {
                 component="div"
                 variant="h5"
               >
-                Champions LA 2023 Card
+                {element.displayName}
               </Typography>
             </CustomCard>
           );
