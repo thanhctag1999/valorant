@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { publicRoutes } from "./Routes";
 import "./App.scss";
-import Layout from "./components/layouts/layout";
+import Layout from "./components/layouts/Layout";
 
 export default function App() {
   return (
