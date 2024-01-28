@@ -23,7 +23,11 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar-logo">
-        <img className="logo" alt="Logo" src="images/logo.png" />
+        <img
+          className="logo"
+          alt="Logo"
+          src="https://thanhctag1999.github.io/valorant/images/logo.png"
+        />
       </div>
       <div className="sidebar-item">
         {/* <NavLink
@@ -52,8 +56,8 @@ export default function Sidebar() {
             alt="A"
             src={
               activeTab === "agents"
-                ? window.location.origin + "images/agent_active.png"
-                : window.location.origin + "images/agent.png"
+                ? "https://thanhctag1999.github.io/valorant/images//agent_active.png"
+                : "https://thanhctag1999.github.io/valorant/images/agent.png"
             }
           />
         </NavLink>
@@ -68,8 +72,8 @@ export default function Sidebar() {
             alt="W"
             src={
               activeTab === "weapons"
-                ? "images/gun_active.png"
-                : "images/gun.png"
+                ? "https://thanhctag1999.github.io/valorant/images//gun_active.png"
+                : "https://thanhctag1999.github.io/valorant/images/gun.png"
             }
           />
         </NavLink>
@@ -84,8 +88,8 @@ export default function Sidebar() {
             alt="M"
             src={
               activeTab === "maps"
-                ? "images/maps_active.png"
-                : "images/maps.png"
+                ? "https://thanhctag1999.github.io/valorant/images//maps_active.png"
+                : "https://thanhctag1999.github.io/valorant/images/maps.png"
             }
           />
         </NavLink>
@@ -100,8 +104,8 @@ export default function Sidebar() {
             alt="P"
             src={
               activeTab === "card"
-                ? "images/card_active.png"
-                : "images/card.png"
+                ? "https://thanhctag1999.github.io/valorant/images//card_active.png"
+                : "https://thanhctag1999.github.io/valorant/images/card.png"
             }
           />
         </NavLink>
