@@ -1,4 +1,4 @@
-import Sidebar from "./sidebar/sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import "./Layout.scss";
 
 const Layout = ({ children }) => {
