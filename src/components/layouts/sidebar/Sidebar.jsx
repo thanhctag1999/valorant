@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import "./sidebar.scss";
+import "./Sidebar.scss";
 
 export default function Sidebar() {
   const location = useLocation();
