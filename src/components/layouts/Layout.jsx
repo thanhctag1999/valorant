@@ -1,5 +1,5 @@
-import Sidebar from "./Sidebar/Sidebar";
 import "./Layout.scss";
+import Sidebar from "./sidebar/sidebar";
 
 const Layout = ({ children }) => {
   return (
