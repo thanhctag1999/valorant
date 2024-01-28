@@ -3,12 +3,11 @@ import AgentDetail from "../pages/Agents/Agent_Detail";
 import PlayerCards from "../pages/Player_Card/Player_cards";
 import Weapons from "../pages/Weapons/Weapons";
 import Maps from "../pages/Maps/maps";
-import Dashboard from "../pages/Dashboard/Dashboard";
 
 const publicRoutes = [
   {
     path: "/",
-    componnet: Dashboard,
+    componnet: Agent,
   },
   {
     path: "/agents",

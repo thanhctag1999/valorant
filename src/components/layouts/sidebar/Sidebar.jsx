@@ -10,7 +10,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     if (currentRoute === "") {
-      setActiveTab("home");
+      setActiveTab("agents");
     } else {
       setActiveTab(currentRoute);
     }
@@ -26,7 +26,7 @@ export default function Sidebar() {
         <img className="logo" alt="Logo" src="images/logo.png" />
       </div>
       <div className="sidebar-item">
-        <NavLink
+        {/* <NavLink
           onClick={() => handleNavLinkClick("home")}
           className={activeTab === "home" ? "active" : ""}
           to="/"
@@ -40,7 +40,7 @@ export default function Sidebar() {
                 : "images/home.png"
             }
           />
-        </NavLink>
+        </NavLink> */}
 
         <NavLink
           onClick={() => handleNavLinkClick("agents")}
