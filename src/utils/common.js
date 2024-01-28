@@ -18,4 +18,6 @@ const responsive = {
   },
 };
 
-export { responsive };
+const path = "public/images/";
+
+export { responsive, path };

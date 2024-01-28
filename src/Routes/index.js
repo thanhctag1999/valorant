@@ -6,7 +6,7 @@ import Maps from "../pages/Maps/maps";
 
 const publicRoutes = [
   {
-    path: "/",
+    path: "/valorant",
     componnet: Agent,
   },
   {

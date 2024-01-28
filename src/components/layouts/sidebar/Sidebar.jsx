@@ -52,8 +52,8 @@ export default function Sidebar() {
             alt="A"
             src={
               activeTab === "agents"
-                ? "images/agent_active.png"
-                : "images/agent.png"
+                ? window.location.origin + "images/agent_active.png"
+                : window.location.origin + "images/agent.png"
             }
           />
         </NavLink>
